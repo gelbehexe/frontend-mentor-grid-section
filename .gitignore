@@ -1,4 +1,10 @@
-# Avoid accidental Sketch file upload 
+.idea
+*.iml
+out
+gen
+node_modules
+
+# Avoid accidental Sketch file upload
 ###############################################
 ## Please do not remove line 5 - thanks! 🙂 ##
 ###############################################
@@ -14,4 +20,4 @@
 # Avoid your project being littered with annoying .DS_Store files!
 .DS_Store
 
-.prettierignore
+dist
