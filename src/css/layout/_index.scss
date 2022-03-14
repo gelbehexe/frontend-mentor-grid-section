@@ -1,0 +1,6 @@
+@use "../abstract/variables" as *;
+@use "../abstract/mixins" as *;
+
+@forward "body";
+@forward "content-grid";
+@forward "wrapper";

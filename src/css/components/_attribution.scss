@@ -1,0 +1,9 @@
+.attribution {
+    font-size: 11px;
+    text-align: center;
+    background-color: var(--clr-attribution-bg);
+    color: var(--clr-attribution-fg, inherit);
+    position: fixed;
+    padding: 8px var(--main-padding-inline);
+    inset: auto 0 0 0;
+}

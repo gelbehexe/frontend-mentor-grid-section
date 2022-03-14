@@ -1,0 +1,27 @@
+@use "variables" as *;
+@use "sass:map";
+
+@function getRgbValues($color) {
+    $red: red($color);
+    $green: green($color);
+    $blue: blue($color);
+
+    @return $red $green $blue;
+}
+@function getBreakpoint($screen) {
+    $value: null;
+    @if (not map.has-key($breakpoints, $screen)) {
+        @if (type-of($screen) == 'number') {
+            @if unitless($screen) {
+                @return $screen + px;
+            } @else {
+                @return $screen;
+            }
+        } @else {
+            @error "Screen '#{$screen}' does not exist."
+        }
+    } @else {
+        @return map.get($breakpoints, $screen);
+    }
+
+}

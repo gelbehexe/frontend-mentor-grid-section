@@ -1,18 +1,23 @@
-const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = (env, argv) => {
-    const mode = (argv || {}).mode || "production";
-    const isDevMode = mode === "development";
+    const mode = (argv || {}).mode || "production"
+    const isDevMode = mode === "development"
 
-    return {
+    const res = {
+        cache: false,
         mode: mode,
         entry: {
-            index: "./src/index.js",
+            main: "./src/index.js",
         },
+        target: "web",
 
-        devtool: isDevMode ? "inline-source-map" : false,
+        devtool: isDevMode
+            ? "inline-source-map"
+            : "hidden-nosources-source-map",
+        // devtool: "hidden-cheap-source-map",
         devServer: {
             static: {
                 directory: "./dist",
@@ -34,6 +39,7 @@ module.exports = (env, argv) => {
                         MiniCssExtractPlugin.loader,
                         // 'style-loader', // inline-css
                         "css-loader",
+                        "resolve-url-loader",
                         "postcss-loader",
                         "sass-loader",
                     ],
@@ -42,16 +48,18 @@ module.exports = (env, argv) => {
                     test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
                     type: "asset/resource",
                     generator: {
-                        // outputPath: 'img/',
-                        filename: "assets/images/[name]-[hash][ext]",
+                        filename: isDevMode
+                            ? "assets/images/[name][ext]"
+                            : "assets/images/[name]-[hash][ext]",
                     },
                 },
                 {
                     test: /\.(woff2|woff|eot|ttf|otf)$/i,
                     type: "asset/resource",
                     generator: {
-                        // outputPath: 'img/',
-                        filename: "assets/fonts/[name]-[hash][ext]",
+                        filename: isDevMode
+                            ? "assets/fonts/[name][ext]"
+                            : "assets/fonts/[name]-[hash][ext]",
                     },
                 },
             ],
@@ -60,35 +68,19 @@ module.exports = (env, argv) => {
             new HtmlWebpackPlugin({
                 title: "Frontend Mentor - Testimonials grid section",
                 template: "./src/index.ejs",
-                templateParameters: (
-                    compilation,
-                    assets,
-                    assetTags,
-                    options
-                ) => {
-                    const iconTag = assetTags.headTags.find(
-                        ({ tagName, attributes }) =>
-                            tagName === "link" && attributes.rel === "icon"
-                    );
-                    if (iconTag) {
-                        iconTag.attributes.type = "image/png";
-                        iconTag.attributes.sizes = "32x32";
-                    }
-
-                    return {
-                        compilation,
-                        webpackConfig: compilation.options,
-                        htmlWebpackPlugin: {
-                            tags: assetTags,
-                            files: assets,
-                            options,
-                        },
-                    };
+                templateParameters: {
+                    user: {
+                        name: "Deborah White",
+                        web: "https://codepen.io/your-work/",
+                    },
+                    sourceCode:
+                        "https://github.com/gelbehexe/frontend-mentor-grid-section",
                 },
-                favicon: "./src/assets/images/favicon-32x32.png",
             }),
             new MiniCssExtractPlugin({
-                filename: "css/[name]-[fullhash].css",
+                filename: isDevMode
+                    ? "css/[name].css"
+                    : "css/[name]-[fullhash].css",
             }),
         ],
         optimization: {
@@ -99,5 +91,11 @@ module.exports = (env, argv) => {
             path: path.resolve(__dirname, "dist"),
             clean: true,
         },
-    };
-};
+    }
+
+    if (env.WEBPACK_WATCH || env["WEBPACK_SERVE"] ? "web" : "browserslist") {
+        res.target = "web"
+    }
+
+    return res
+}

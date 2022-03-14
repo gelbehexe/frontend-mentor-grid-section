@@ -1,0 +1,10 @@
+@use "../abstract/mixins" as *;
+
+.wrapper {
+    margin-inline: var(--main-padding-inline);
+    padding-block: var(--main-padding-block);
+
+    display: grid;
+    place-content: center;
+    min-height: 100vh;
+}

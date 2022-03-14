@@ -1,0 +1,91 @@
+@use "../abstract/variables" as *;
+@use "../abstract/mixins" as *;
+.box {
+    --clr-box-bg-colors: var(--clr-primary-darkblue);
+    --clr-box-fg-colors: var(--clr-primary-white);
+
+    --clr-box-bg: rgb(var(--clr-box-bg-colors));
+    --clr-box-fg: rgb(var(--clr-box-fg-colors));
+
+    --clr-box-fg-graduation: rgb(var(--clr-box-fg-colors) / 0.5);
+    --clr-box-fg-quote: rgb(var(--clr-box-fg-colors) / 0.7);
+    --clr-box-img-border: rgb(var(--clr-box-fg-colors) / 0.5);
+
+    // position of bg image in first box
+    --box-bg-inset-inline-end: var(--box-padding-inline);
+
+    padding: var(--box-padding-block) var(--box-padding-inline);
+    background-color: var(--clr-box-bg);
+    color: var(--clr-box-fg);
+    border-radius: var(--box-border-radius);
+    box-shadow: 10px 10px 20px rgb(var(--clr-primary-darkgray) / 0.1);
+
+    &__header {
+        display: flex;
+        align-content: flex-start;
+    }
+
+    &__img {
+        --_size: 28px;
+        width: var(--_size);
+        height: var(--_size);
+        display: block;
+        border-radius: 100%;
+        box-shadow: 0 0 0 2px var(--clr-box-img-border);
+    }
+
+    &__title {
+        margin-inline-start: 16px;
+        &__name, &__graduation {
+            font-size: 13px;
+            margin: 0;
+            padding: 0;
+            line-height: 1;
+        }
+        &__name {
+            font-weight: 400;
+        }
+        &__graduation {
+            margin-top: 2px;
+            color: var(--clr-box-fg-graduation);
+            font-size: 12px;
+        }
+    }
+
+    &__statement {
+        margin: 16px 0 0 0;
+        font-size: 18px;
+        line-height: 1.35;
+        font-weight: 500;
+    }
+
+    &__quote {
+        margin: 14px 0 0 0;
+        font-size: 13px;
+        color: var(--clr-box-fg-quote);
+        line-height: 1.4;
+    }
+
+    &--daniel {
+        --clr-box-bg-colors: var(--clr-primary-violet);
+        background-image: url("../../assets/images/bg-pattern-quotation.svg");
+        background-repeat: no-repeat;
+        background-position: calc(100% - var(--box-bg-inset-inline-end)) 0;
+    }
+    &--jonathan {
+        --clr-box-bg-colors: var(--clr-primary-darkgray);
+        --clr-box-img-border: transparent;
+    }
+    &--jeanette, &--kira {
+        --clr-box-bg-colors: var(--clr-primary-white);
+        --clr-box-fg-colors: var(--clr-primary-darkgray);
+        --clr-box-img-border: transparent;
+    }
+    &--patrick {
+        --clr-box-img-border: rgb(var(--clr-primary-violet));
+    }
+    @include media-breakpoint-min(sm) {
+        --box-bg-inset-inline-end: 80px;
+    }
+}
+

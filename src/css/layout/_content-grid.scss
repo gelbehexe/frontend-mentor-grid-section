@@ -1,0 +1,41 @@
+@use "../abstract/variables" as *;
+@use "../abstract/mixins" as *;
+.content-grid {
+    display: grid;
+    row-gap: var(--grid-row-gap);
+    column-gap: var(--grid-column-gap);
+    margin-inline: auto;
+    max-width: 1110px;
+    outline-offset: -2px;
+
+    grid-template-areas:
+                "daniel"
+                "jonathan"
+                "jeanette"
+                "patrick"
+                "kira";
+
+
+    @include media-breakpoint-min(sm) {
+        grid-template-columns:  repeat(3, 1fr);
+        grid-template-areas:
+            "daniel daniel kira"
+            "patrick patrick kira"
+            "jeanette jonathan jonathan";
+    }
+    @include media-breakpoint-min(xl) {
+        grid-template-columns:  repeat(4, 1fr);
+        grid-template-areas:
+            "daniel daniel jonathan kira"
+            "jeanette patrick patrick kira";
+    }
+
+}
+
+.box {
+    @each $area in daniel, jonathan, jeanette, patrick, kira {
+        &--#{$area} {
+            grid-area: $area;
+        }
+    }
+}

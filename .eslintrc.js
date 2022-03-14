@@ -10,7 +10,7 @@ module.exports = {
         sourceType: "module",
     },
     rules: {
-        indent: "off",
+        "indent": "off",
         "linebreak-style": 0,
     },
-};
+}

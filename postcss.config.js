@@ -4,8 +4,9 @@ module.exports = {
             stage: 1,
             features: {
                 "prefers-color-scheme-query": false,
-                "logical-properties-and-values": true,
+                "custom-properties": false,
+                "logical-properties-and-values": false,
             },
         }),
     ],
-};
+}

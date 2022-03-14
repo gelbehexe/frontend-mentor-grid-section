@@ -1,0 +1,33 @@
+@use "../abstract/variables" as *;
+@use "../abstract/functions" as *;
+
+//noinspection SassScssResolvedByNameOnly
+:root {
+    --font-size-base: #{$font-size-base};
+
+    --main-padding-block: 72px;
+    --main-padding-inline: 24px;
+
+    --clr-primary-violet: #{getRgbValues($clr-primary-violet)};
+    --clr-primary-darkgray: #{getRgbValues($clr-primary-darkgray)};
+    --clr-primary-darkblue: #{getRgbValues($clr-primary-darkblue)};
+    --clr-primary-white: #{getRgbValues($clr-primary-white)};
+
+    --clr-neutral-gray: #{getRgbValues($clr-neutral-gray)};
+    --clr-neutral-grayblue: #{getRgbValues($clr-neutral-grayblue)};
+
+    --clr-main-bg-colors: var(--clr-neutral-grayblue);
+    --clr-main-bg: rgb(var(--clr-main-bg-colors));
+    --clr-main-fg: rgb(var(--clr-primary-darkblue));
+
+    --clr-attribution-bg: rgb(var(--clr-main-bg-colors) / 0.8);
+
+    --grid-row-gap: 24px;
+    --grid-column-gap: 32px;
+
+    --box-padding-block: 26px;
+    --box-padding-inline: 32px;
+    --box-border-radius: 10px;
+
+}
+

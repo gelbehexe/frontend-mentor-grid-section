@@ -1,0 +1,29 @@
+@use "../abstract/variables" as *;
+@use "../abstract/mixins" as *;
+@use "~@fontsource/barlow-semi-condensed/scss/mixins" as BarlowSemiCondensed;
+
+@include BarlowSemiCondensed.fontFace($weight: 100);
+@include BarlowSemiCondensed.fontFace($weight: 200);
+@include BarlowSemiCondensed.fontFace($weight: 300);
+@include BarlowSemiCondensed.fontFace($weight: 400); //
+@include BarlowSemiCondensed.fontFace($weight: 500); //
+@include BarlowSemiCondensed.fontFace($weight: 600);
+@include BarlowSemiCondensed.fontFace($weight: 700);
+@include BarlowSemiCondensed.fontFace($weight: 800);
+//@include BarlowSemiCondensed.fontFace($weight: 600);
+
+html, body {
+    font-family: "Barlow Semi Condensed", sans-serif;
+    font-size: var(--font-size-base);
+}
+a[href] {
+    color: inherit;
+    text-decoration: underline;
+    &:hover, &:active {
+        opacity: 0.7;
+    }
+}
+
+.sr-only {
+    @include visuallyHidden();
+}
