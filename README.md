@@ -30,7 +30,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Source code on GitHub](https://github.com/gelbehexe/frontend-mentor-grid-section)
-- Live Site URL: [My live page on a server](https://placeholder.live.de/)
+- Live Site URL: [My live page on a server](https://frontend-mentor-grid-section-gelbehexe.netlify.app)
 
 ## My process
 
