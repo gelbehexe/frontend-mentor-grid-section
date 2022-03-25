@@ -71,7 +71,7 @@ module.exports = (env, argv) => {
                 templateParameters: {
                     user: {
                         name: "Deborah White",
-                        web: "https://codepen.io/your-work/",
+                        web: "https://codepen.io/collection/VYvGBb",
                     },
                     sourceCode:
                         "https://github.com/gelbehexe/frontend-mentor-grid-section",
